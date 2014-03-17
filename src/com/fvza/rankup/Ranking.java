@@ -75,7 +75,19 @@ public class Ranking {
 			
 				Rankup.perms.playerAddGroup(player, newRank);
 				Language.broadcast( "&b" + player.getDisplayName() + "&3 has ranked up to &b" + newRank + "." );
-				
+				  Location location = player.getLocation();
+                                  Firework f = (Firework) player.getWorld().spawn(player.getLocation(), Firework.class);
+                                  FireworkMeta meta = f.getFireworkMeta();
+                                  meta.addEffect(FireworkEffect.builder()
+                                  .flicker(false)
+                                  .trail(true)
+                                  .with(FireworkEffect.Type.BALL_LARGE)
+                                  .withColor(Color.RED)
+                                  .withColor(Color.BLUE)
+                                  .withFade(Color.GREEN)
+                                  .build());
+                                  f.setFireworkMeta(meta);
+                                  f.eject();
 				return true;
 				
 			}
